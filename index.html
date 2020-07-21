@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>説明</title>
+    <style type="text/css">
+    * {
+        background: #eee;
+        text-align: center;
+        padding: 10px;
+    }
+        h1 {
+            border: 7px solid #1b28d4;
+            padding: 15px 0;
+            border-radius: 10px 2px 10px 2px;
+            letter-spacing: 0.3px;
+            background-color: #ebf6fd;
+            background-image: repeating-linear-gradient(-45deg,#fff, #fff 7px,transparent 0, transparent 14px);
+            margin: 30px auto;
+            width: 70%;
+        }
+        a {
+            background: #181086;
+            padding: 10px 70px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 10px;
+            font-weight: bold;
+            letter-spacing: 10px;
+            box-shadow: 0px 10px 0px #060424;
+            position: relative;
+        }
+        a:hover {
+            top: 2px;
+            box-shadow: 0px 8px 0px #060424;
+        }
+        a:active {
+            top: 10px;
+            box-shadow: 0px 0px 0px #060424;
+        }
+        .explain {
+            margin-top: 30px;
+        }
+        .important {
+            font-weight: bold;
+            color: #b30303;
+        }
+        img {
+            
+            display: block;
+            margin: 20px auto;
+        }
+            .explain_img {
+                border: 7px dashed cornflowerblue;
+                box-shadow: 14px 14px 3px gray;
+            }
+            .down_arrow {
+                width: 5%;
+                
+            }
+
+        table {
+            margin: 0 auto;
+        }
+        th {
+            border: 2px solid #aaa;
+            padding: 0 10px;
+        }
+        td {
+            border: 2px solid #aaa;
+            padding: 5px 10px;
+            text-align: left;
+        }
+        .changed_code {
+            color: rgb(211, 3, 3);
+            font-weight: bold;
+        }
+        .changed {
+            margin-top: 100px;
+            width: 100%;
+        }
+        .changed_part {
+            background: rgba(0,0,0,0);
+            color: #da0000;
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+    <section>
+        <h1>- - - Windowsでjapanese_kivyのモジュールがうまく反映されない - - -</h1>
+        <h2>結論としては、文字コードの種類が違うからみたいです。<br>Windowsでは初期設定の時点でutf-8が対応してないっぽいです。</h2>
+        <a href="https://www.too.com/support/faq/mac/23398.html" class="reference" target="_blank">参考</a>
+        <div class="explain">
+            <p>Windowsの文字コードの種類を変えます。<br>
+                設定 > 時刻と言語 > 地域 > 日時...追加設定 > 地域 > 管理 > システム...変更 > <span class="important">ベータ...Unicode UTF-8を使用のチェックボックスにチェックを入れる</span></p>
+            <img src="https://i.imgur.com/v47EMc2.png" class="explain_img" alt="image01">
+            <img src="https://tegaky.com/files/down-arrow.png" class="down_arrow" alt="down_arrow">
+            <img src="https://i.imgur.com/wORNH1A.png" class="explain_img" alt="image02">
+            <img src="https://tegaky.com/files/down-arrow.png" class="down_arrow" alt="down_arrow">
+            <img src="https://i.imgur.com/kvzWJja.png" class="explain_img" alt="image03">
+            <img src="https://tegaky.com/files/down-arrow.png" class="down_arrow" alt="down_arrow">
+            <img src="https://i.imgur.com/WBPtCYE.png" class="explain_img" alt="image04">
+            <img src="https://tegaky.com/files/down-arrow.png" class="down_arrow" alt="down_arrow">
+            <img src="https://i.imgur.com/1AqTRBh.png" class="explain_img" alt="image05">
+            <img src="https://tegaky.com/files/down-arrow.png" class="down_arrow" alt="down_arrow">
+            <img src="https://i.imgur.com/3oid9dG.png" class="explain_img" alt="image06">
+            <img src="https://tegaky.com/files/down-arrow.png" class="down_arrow" alt="down_arrow">
+            <img src="https://i.imgur.com/VOaKswF.png" class="explain_img" alt="image07">
+            <img src="https://tegaky.com/files/down-arrow.png" class="down_arrow" alt="down_arrow">
+            <img src="https://i.imgur.com/hqPEEYD.png" class="explain_img" alt="image08">
+            <img src="https://tegaky.com/files/down-arrow.png" class="down_arrow" alt="down_arrow">
+            <img src="https://i.imgur.com/T1lkmkt.png" class="explain_img" alt="image09">
+        </div>
+        <div class="changed">
+            <h2>変更点</h2>
+            <div class="changed_before">
+                <h3>変更前</h3>
+                <table cellspacing="1">
+                    <tr class="changed_code"><th>1</th><td>import japanize_kivy    # 表示言語日本語化パッケージ</td></tr>
+                    <tr><th></th><td>...</td></tr>
+                    <tr><th>25</th><td>#フォント設定</td></tr>
+                    <tr><th>26</th><td>from kivy.core.text import LabelBase, DEFAULT_FONT</td></tr>
+                    <tr><th>27</th><td>from kivy.resources import resource_add_path</td></tr>
+                    <tr><th>28</th><td>resource_add_path('Materials/Fonts/')</td></tr>
+                    <tr class="changed_code"><th>29</th><td>LabelBase.register(DEFAULT_FONT, 'ヒラギノ角ゴシック W6.ttc')</td></tr>
+                </table>
+            </div>
+            <img src="https://tegaky.com/files/down-arrow.png" class="down_arrow" alt="down_arrow">
+            <div class="change_after">
+                <h3>変更後</h3>
+                <table cellspacing="1">
+                    <tr><th>1</th><td><span class="changed_part"># </span>import japanize_kivy    <span class="changed_part"># 使わなくて大丈夫です。消しました。</span></td></tr>
+                    <tr><th></th><td>...</td></tr>
+                    <tr><th>25</th><td>#フォント設定</td></tr>
+                    <tr><th>26</th><td>from kivy.core.text import LabelBase, DEFAULT_FONT</td></tr>
+                    <tr><th>27</th><td>from kivy.resources import resource_add_path</td></tr>
+                    <tr><th>28</th><td>resource_add_path('Materials/Fonts/')</td></tr>
+                    <tr><th>29</th><td>LabelBase.register(DEFAULT_FONT, <span class="changed_part">'ipaexg.ttf'</span>)</td></tr>
+                    <tr class="changed_code"><th>30</th><td># 前のフォントはwindowsでは使えなかったみたいです。こちらでいきます。</td></tr>
+                    <tr class="changed_code"><th>31</th><td># Materials/Fontsフォルダにipaexg.ttfフォントがあることを確認しておいてください！</td></tr>
+                </table>
+            </div>
+        </div> 
+    </section>
+</body>
+</html>
